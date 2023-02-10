@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>PDF2PGN</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div id="nav-left"><a href="/">Logo</a></div>
+            <div id="nav-right">
+                <ul>
+                    <li><a href="/game">Convert PGN</a></li>
+                    <li><a href="#info-section">About</a></li>
+                    <li><a href="#contact-section">Contact</a></li>   
+                </ul>
+                <div class="hamburger">
+                    <div id="hamburger-links">
+                        <a href="/game">Convert PGN</a>
+                        <a href="#info-section">Info</a>
+                        <a href="#contact-section">Contact</a>
+                      </div>
+                      <a href="javascript:void(0);" class="icon" onclick="hamburgerMenu()"><i class="fa-solid fa-bars"></i></a>
+            </div>
+                </div>
+        </nav>
+        <section id="hero-section">
+            <h1>Convert a Chess PGN into a Beautiful PDF</h1>
+            <div>
+                <a href="https://placeholder.com"><img src="https://via.placeholder.com/250x150"></a>
+            </div>
+            <div>
+                <a href="/game"><button id="header-start-button">Click Here To Start</button></a>
+            </div>
+        </section>
+    </header>
+    <main>
+        <section id="info-section">
+            <h2>Info Section</h2>
+            <div class="seperator-line"></div>
+            <div id="info-section-grid-container">
+                <div class="info-section-grid-item">
+                    <a href="https://placeholder.com"><img src="https://via.placeholder.com/100x150"></a>
+                </div>
+                <div class="info-section-grid-item">
+                    <a href="https://placeholder.com"><img src="https://via.placeholder.com/100x150"></a>
+                </div>
+                <div class="info-section-grid-item">
+                    <a href="https://placeholder.com"><img src="https://via.placeholder.com/100x150"></a>
+                </div>
+            </div>
+        </section>
+        <section id="contact-section">
+            <h2>Contact Us</h2>
+            <div class="seperator-line"></div>
+            <form id="contact-form" action="">
+                <input type="text" id="name" placeholder="Your Name" />
+                <input type="text" id="email" placeholder="email@email.com" />
+                <textarea cols="30" rows="5" id="message" placeholder="Your message"></textarea>
+                <button id="contact-form-button">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div id="footer-left">
+            <p>&copy;2023 - Owen Rees</p>
+        </div>
+        <div id="footer-right">
+            <a href="https://github.com/TheRealOwenRees" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/96b9326d00.js" crossorigin="anonymous"></script>
+    <script>
+        function hamburgerMenu() {
+            var x = document.getElementById("hamburger-links");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

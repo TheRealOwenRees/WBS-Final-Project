@@ -1,0 +1,212 @@
+/* GLOBAL STYLE */
+:root {
+    --section-white: #f2f2f2;
+    --section-purple: #7f4ee2;
+    background-color: var(--section-white);
+}
+
+* {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+    color: var(--section-purple);
+    margin: 10px 0 20px 0;
+}
+
+h2 {
+    margin: 0 0 0 0;
+}
+
+.seperator-line {
+    background-color: black;
+    opacity: 0.2;
+    height: 2px;
+    width: 20%;
+    margin: 5px auto 10px auto
+}
+
+/* NAV BAR */
+nav {
+    display: grid;
+    justify-items: start;
+    grid-template-columns: 1fr 3fr;
+    background-color: var(--section-purple);
+    padding: 20px 0 20px 0;
+}
+#nav-left {
+    margin-left: 10px;
+}
+#nav-right {
+    margin-right: 10px;
+    justify-self: end;
+}
+nav ul {
+    /* justify-items: space-between; */
+    list-style: none;
+    font-weight: bold;
+    display: none;
+}
+nav a {
+    text-decoration: none;
+    color: var(--section-white);
+}
+nav li {
+
+}
+#hamburger-links {
+    display: none;
+}
+.hamburger a {
+    color: var(--section-white);
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+}
+.hamburger a.icon {
+    background: transparent;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.hamburger a:hover {
+    background-color: var(--section-white);
+    color: var(--section-purple);
+  }
+
+/* HEADER */
+header {
+    text-align: center;
+    background-color: var(--section-white);
+    padding-bottom: 20px;
+}
+#header-start-button {
+    background-color: transparent;
+    color: var(--section-purple);
+    font-weight: 600;
+    border: 2px solid var(--section-purple);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+}
+#header-start-button:hover, 
+#header-start-button:active,
+#header-start-button:focus  {
+    background-color: var(--section-purple);
+    color: var(--section-white);
+}
+
+/* INFO SECTION */
+#info-section {
+    padding: 10px 0 10px 0;
+    background-color: var(--section-purple);
+}
+#info-section h2 {
+    color: var(--section-white);
+    text-align: center;
+}
+#info-section-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+.info-section-grid-item {
+
+}
+
+/* CONTACT FORM */
+#contact-section {
+    padding: 10px 0 10px 0;
+    color: var(--section-purple);
+    text-align: center;
+    background-color: var(--section-white);
+}
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#contact-form input,
+#contact-form textarea {
+    padding: 10px;
+    margin: 10px 0;
+    width: 70%;
+    box-sizing: border-box;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+}
+#contact-form-button {
+    background-color: transparent;
+    color: var(--section-purple);
+    font-weight: 600;
+    border: 2px solid var(--section-purple);
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+}
+#contact-form-button:hover, 
+#contact-form-button:active,
+#contact-form-button:focus  {
+    background-color: var(--section-purple);
+    color: var(--section-white);
+}
+
+/* GAME TITLE */
+#game-title-section {
+    border: 2px solid red;
+    text-align: center;
+}
+
+/* CHESS BOARD SECTION */
+#chess-board-section {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid purple;
+    align-items: center;
+}
+
+/* CHESS BOARD ACTUAL */
+/* #board {
+
+} */
+
+/* PGN HEADER */
+#pgn-header-section {
+    border: 2px solid pink;
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    padding: 10px;
+    background-color: var(--section-purple);
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+
+#footer-left {
+
+}
+#footer-right {
+    justify-self: end;
+}
+footer a {
+    color: var(--section-white)
+}
+footer a:hover {
+    color: black;
+}
+footer p {
+    color: var(--section-white);
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width:450px) {
+    .hamburger {
+        visibility: hidden;
+    }
+    nav ul {
+        display: flex;
+    }
+}

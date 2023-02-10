@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-left">Logo</div>
+        <div class="nav-right">
+          <ul>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+      </nav>
+      <section id="hero-section">
+        <a href="/"><h1>Convert a Chess PGN File to a PDF</h1></a>
+      </section>
+    </header>
+    <main>
+      <section id="game-title-section"><h2>Game Title</h2></section>
+      <form method="post" id="gameForm" action="" enctype="multipart/form-data" name="gameForm">
+        <section id="chess-board-section">
+          <div>
+            <input
+              type="file"
+              id="pgnfile"
+              name="pgnfile"
+              accept=".pgn, .txt"
+            />
+            <button type="submit" name="action" value="loadpgn">Load PGN</button>
+            
+          </div>
+          <div id="board"></div>
+        </section>
+        <section id="pgn-header-section">
+          <p>PGN Header View/Edit</p>
+          <div><label>Event</label><input type="text" name="event" value="<%- event %>" /></div>
+          <div><label>Site</label><input type="text" name="site" value="<%- site %>" /></div>
+          <div><label>Date</label><input type="text" name="date" value="<%- date %>" /></div>
+          <div><label>Round</label><input type="text" name="round" value="<%- round %>" /></div>
+          <div><label>White</label><input type="text" name="white" value="<%- white %>" /></div>
+          <div><label>Black</label><input type="text" name="black" value="<%- black %>" /></div>
+          <div><label>Result</label><input type="text" name="result" value="<%- result %>" /></div>
+          <div><label>ECO</label><input type="text" name="eco" value="<%- eco %>" /></div>
+          <div><label>WhiteElo</label><input type="text" name="whiteElo" value="<%- whiteElo %>" /></div>
+          <div><label>BlackElo</label><input type="text" name="blackElo" value="<%- blackElo %>" /></div>
+          <div><label>PlyCount</label><input type="text" name="plyCount" value="<%- plyCount %>" /></div>
+          <div><label>EventDate</label><input type="text" name="eventDate" value="<%- eventDate %>" /></div>
+          <div><label>Source</label><input type="text" name="source" value="<%- source %>" /></div>
+          <div>
+            <button name="action" value="savepgn" onclick="getMoves()">Save PGN</button>
+            <button name="action" value="savepdf" onclick="getMoves()">Save as PDF</button>
+        </div>
+        </section>
+      </form>
+    </main>
+    <footer>&copy;2023 - Owen Rees</footer>
+
+    <script src="js/@mliebelt/pgn-viewer/lib/dist.js"></script>
+    <script>
+      const config = <%- JSON.stringify(config) %>
+      let board = PGNV.pgnEdit('board', config);
+    </script>
+    <script>
+      function getMoves() {
+        let pgnButton = document.getElementById('boardButtonpgn')
+        pgnButton.click();
+        let moves = document.getElementById('textpgnboardButton').innerHTML;
+        if (!document.getElementById('moves')) {
+          let movesInput = document.createElement('input');
+          movesInput.setAttribute('type', 'hidden');
+          movesInput.setAttribute('name', 'moves');
+          movesInput.setAttribute('id', 'moves');
+          movesInput.setAttribute('value', moves);
+          document.getElementById('gameForm').appendChild(movesInput);
+        } else {
+          document.getElementById('moves').value=moves;
+        }
+        pgnButton.click();
+        document.getElementById('gameForm').submit();
+      }
+    </script>
+  </body>
+</html>
