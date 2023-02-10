@@ -85,7 +85,7 @@ ${data.moves}`
     )
   }
 
-  // save loaded game as PDF
+  // save loaded game as PGN
   if (req.body.action === 'savepgn') {
     const pgnString = createPgnString(req.body)
 
@@ -98,6 +98,13 @@ ${data.moves}`
 
     readStream.pipe(res);
     readStream.end()
+  }
+
+  //save loaded game as PDF
+  if (req.body.action === 'savepdf') {
+    const pgnString = createPgnString(req.body)
+    console.log(pgnString)
+    res.send([pgnString])
   }
 
   // load game and split PGN
