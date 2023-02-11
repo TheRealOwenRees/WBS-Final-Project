@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const fileupload = require('express-fileupload');
 const stream = require('stream');
+const pgn2tex = require('./public/js/pgn2tex.js')
 
 const app = express();
 const port = 5000;
@@ -100,11 +101,10 @@ ${data.moves}`
     readStream.end()
   }
 
-  //save loaded game as PDF
+  // save loaded game as PDF
   if (req.body.action === 'savepdf') {
     const pgnString = createPgnString(req.body)
-    console.log(pgnString)
-    res.send([pgnString])
+    res.send(pgn2tex(pgnString))
   }
 
   // load game and split PGN
