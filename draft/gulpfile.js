@@ -1,4 +1,4 @@
-const { series, parallel, watch, src, dest } = require('gulp');
+const { watch } = require('gulp');
 const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync');
 
