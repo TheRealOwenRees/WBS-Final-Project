@@ -2,7 +2,6 @@ const { parse } = require('@mliebelt/pgn-parser');
 
 function pgn2tex(pgn, diagrams) {
     const game = parse(pgn);
-
     const header = game[0].tags;
     const { moves } = game[0];
 
@@ -92,31 +91,11 @@ function pgn2tex(pgn, diagrams) {
         });
         // end of moveStr
         moveStr += `\\textbf{${header.Result}}`;
+         moveStr = moveStr.replaceAll(/#/g, '\\#')   // regex replace # with \# for LaTex
         return moveStr;
     };
-
-    // ply numbers + FEN where diagrams should be displayed
-    // const diagrams = [
-    //     {
-    //         ply: 3,
-    //         fen: 'r4rk1/5pbp/2p1p1p1/pq6/8/1P2B3/R4PPP/3QR1K1 w - - 2 23',
-    //     },
-    //     {
-    //         ply: 10,
-    //         fen: 'r4rk1/5pbp/2p1p1p1/pq6/8/1P2B3/R4PPP/3QR1K1 w - - 2 23',
-    //     },
-    //     {
-    //         ply: 30,
-    //         fen: 'r4rk1/5pbp/2p1p1p1/pq6/8/1P2B3/R4PPP/3QR1K1 w - - 2 23',
-    //     },
-    //     {
-    //         ply: 45,
-    //         fen: 'r4rk1/5pbp/2p1p1p1/pq6/8/1P2B3/R4PPP/3QR1K1 w - - 2 23',
-    //     },
-    // ];
-
+    // console.log(texStart + moveText(diagrams) + texEnd)
     return texStart + moveText(diagrams) + texEnd;
-
 }
 
 module.exports = pgn2tex
