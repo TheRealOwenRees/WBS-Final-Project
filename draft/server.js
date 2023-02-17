@@ -5,6 +5,7 @@ const fs = require('fs');
 const fileupload = require('express-fileupload');
 const stream = require('stream');
 const pgn2tex = require('./public/js/pgn2tex.js')
+const { parse } = require('@mliebelt/pgn-parser');
 
 const app = express();
 const port = 5000;
@@ -104,7 +105,9 @@ ${data.moves}`
   // save loaded game as PDF
   if (req.body.action === 'savepdf') {
     const pgnString = createPgnString(req.body)
-    res.send(pgn2tex(pgnString))
+    const diagrams = JSON.parse(req.body.diagramPly)
+    console.log(diagrams)
+    res.send(pgn2tex(pgnString, diagrams))
   }
 
   // load game and split PGN
@@ -137,7 +140,7 @@ ${data.moves}`
         locale: 'en',
         timerTime: '',
         layout: 'top',
-        showFen: false,
+        showFen: true,
         coordsInner: true,
         headers: true,
         coordsFactor: '1.0',

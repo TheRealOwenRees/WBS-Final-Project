@@ -72,25 +72,6 @@
       const config = <%- JSON.stringify(config) %>
       let board = PGNV.pgnEdit('board', config);
     </script>
-    <script>
-      function getMoves() {
-        let pgnButton = document.getElementById('boardButtonpgn')
-        pgnButton.click();
-        let moves = document.getElementById('textpgnboardButton').innerHTML;
-        if (!document.getElementById('moves')) {
-          let movesInput = document.createElement('input');
-          movesInput.setAttribute('type', 'hidden');
-          movesInput.setAttribute('name', 'moves');
-          movesInput.setAttribute('id', 'moves');
-          movesInput.setAttribute('value', moves);
-          document.getElementById('gameForm').appendChild(movesInput);
-        } else {
-          document.getElementById('moves').value=moves;
-        }
-        pgnButton.click();
-        document.getElementById('gameForm').submit();
-      }
-    </script>
     <script src="js/script.js"></script>
   </body>
 </html>
