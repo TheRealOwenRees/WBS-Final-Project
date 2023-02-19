@@ -112,7 +112,8 @@ ${data.moves}`
     const output = fs.createWriteStream('output.pdf')
     const pdf = latex(input)
 
-    pdf.pipe(output)
+    // pdf.pipe(output)
+    pdf.pipe(res)
     pdf.on('error', err => console.error(err))
     pdf.on('finish', () => console.log('PDF generated!'))
   }
