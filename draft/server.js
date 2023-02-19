@@ -5,7 +5,7 @@ const fs = require('fs');
 const fileupload = require('express-fileupload');
 const stream = require('stream');
 const pgn2tex = require('./public/js/pgn2tex.js')
-const { parse } = require('@mliebelt/pgn-parser');
+const latex = require('node-latex')
 
 const app = express();
 const port = 5000;
@@ -107,7 +107,14 @@ ${data.moves}`
     const pgnString = createPgnString(req.body)
     const diagrams = JSON.parse(req.body.diagramPly)
     console.log(diagrams)
-    res.send(pgn2tex(pgnString, diagrams))
+    const texFile = pgn2tex(pgnString, diagrams)
+    const input = fs.createReadStream('input.tex')
+    const output = fs.createWriteStream('output.pdf')
+    const pdf = latex(input)
+
+    pdf.pipe(output)
+    pdf.on('error', err => console.error(err))
+    pdf.on('finish', () => console.log('PDF generated!'))
   }
 
   // load game and split PGN

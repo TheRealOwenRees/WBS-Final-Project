@@ -94,7 +94,7 @@ function pgn2tex(pgn, diagrams) {
          moveStr = moveStr.replaceAll(/#/g, '\\#')   // regex replace # with \# for LaTex
         return moveStr;
     };
-    // console.log(texStart + moveText(diagrams) + texEnd)
+    
     return texStart + moveText(diagrams) + texEnd;
 }
 
