@@ -1,9 +1,11 @@
-let diagramArr = []
+let diagramArr = [] // change to const?
 
+// convert nodelist index to play number - useless function adding 1, but it is here in case I change the way it is done
 const convertIdToPly = (i) => {
     return i + 1;
 }
 
+// html elements
 const diagramSelectCheckbox = document.getElementById('diagram-select-checkbox')
 const boardButton = document.getElementById('boardButton')
 
@@ -11,6 +13,7 @@ const boardButton = document.getElementById('boardButton')
 let sans = document.querySelectorAll('san')
 sans = [...sans].filter(s => s.parentNode.parentNode.className != 'variation')
 
+// event listeners
 diagramSelectCheckbox.addEventListener('click', function () {
     let index = sans.findIndex(s => s.className === 'yellow')
     let fen = document.getElementsByClassName('fen').boardFen.value;
@@ -25,7 +28,6 @@ diagramSelectCheckbox.addEventListener('click', function () {
         console.log(diagramArr)
     }
 })
-
 boardButton.addEventListener('click', () => {
     let index = document.querySelector('.yellow').parentElement.id
     if (diagramArr.some(item => item.ply === convertIdToPly(index))) {
