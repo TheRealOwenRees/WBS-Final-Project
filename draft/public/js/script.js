@@ -66,3 +66,9 @@ function getMoves() {
     pgnButton.click();
     document.getElementById('gameForm').submit();
 }
+
+// get current year
+function currentYear() {
+    const date = new Date();
+    document.getElementById('currentYear').innerHTML = date.getFullYear();
+}

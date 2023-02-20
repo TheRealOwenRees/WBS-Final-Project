@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <title>Document</title>
   </head>
@@ -65,13 +65,23 @@
         </section>
       </form>
     </main>
-    <footer>&copy;2023 - Owen Rees</footer>
+    <footer>
+      <div id="footer-left">
+        <p>&copy; <span id="currentYear"></span> - Owen Rees</p>
+      </div>
+    </footer>
 
     <script src="js/@mliebelt/pgn-viewer/lib/dist.js"></script>
     <script>
+      // load board config
       const config = <%- JSON.stringify(config) %>
+      // display board
       let board = PGNV.pgnEdit('board', config);
     </script>
     <script src="js/script.js"></script>
+    <script>
+      // set current year where needed
+      currentYear();
+    </script>
   </body>
 </html>
