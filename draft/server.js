@@ -6,6 +6,7 @@ const fileupload = require('express-fileupload');
 const stream = require('stream');
 const pgn2tex = require('./public/js/pgn2tex.js')
 const latex = require('node-latex')
+const strStream = require('string-to-stream')
 
 const app = express();
 const port = 5000;
@@ -108,9 +109,11 @@ ${data.moves}`
     const diagrams = JSON.parse(req.body.diagramPly)
     console.log(diagrams)
     const texFile = pgn2tex(pgnString, diagrams)
-    const input = fs.createReadStream('input.tex')
-    const output = fs.createWriteStream('output.pdf')
+    // const input = fs.createReadStream('input.tex')
+    const input = strStream(texFile)
+    // const output = fs.createWriteStream('output.pdf')
     const pdf = latex(input)
+    // const pdf = pdflatex(input)
 
     // pdf.pipe(output)
     pdf.pipe(res)
@@ -183,7 +186,7 @@ ${data.moves}`
   }
 });
 
-// http error reponse codes
+// http error response codes
 app.use((req, res) => res.status(404).send('404'))
 app.use((req, res) => res.status(500).send('500'))
 
