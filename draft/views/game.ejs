@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <title>Document</title>
   </head>
@@ -38,6 +38,10 @@
             
           </div>
           <div id="board"></div>
+          <div id="diagram-select">
+            <label>Position as diagram?</label>
+            <input type="checkbox" id="diagram-select-checkbox">
+          </div>
         </section>
         <section id="pgn-header-section">
           <p>PGN Header View/Edit</p>
@@ -56,36 +60,28 @@
           <div><label>Source</label><input type="text" name="source" value="<%- source %>" /></div>
           <div>
             <button name="action" value="savepgn" onclick="getMoves()">Save PGN</button>
-            <button name="action" value="savepdf" onclick="getMoves()">Save as PDF</button>
+            <button name="action" value="savepdf" onclick="getMoves()" formtarget="_blank">Save as PDF</button>
         </div>
         </section>
       </form>
     </main>
-    <footer>&copy;2023 - Owen Rees</footer>
+    <footer>
+      <div id="footer-left">
+        <p>&copy; <span id="currentYear"></span> - Owen Rees</p>
+      </div>
+    </footer>
 
     <script src="js/@mliebelt/pgn-viewer/lib/dist.js"></script>
     <script>
+      // load board config
       const config = <%- JSON.stringify(config) %>
+      // display board
       let board = PGNV.pgnEdit('board', config);
     </script>
+    <script src="js/script.js"></script>
     <script>
-      function getMoves() {
-        let pgnButton = document.getElementById('boardButtonpgn')
-        pgnButton.click();
-        let moves = document.getElementById('textpgnboardButton').innerHTML;
-        if (!document.getElementById('moves')) {
-          let movesInput = document.createElement('input');
-          movesInput.setAttribute('type', 'hidden');
-          movesInput.setAttribute('name', 'moves');
-          movesInput.setAttribute('id', 'moves');
-          movesInput.setAttribute('value', moves);
-          document.getElementById('gameForm').appendChild(movesInput);
-        } else {
-          document.getElementById('moves').value=moves;
-        }
-        pgnButton.click();
-        document.getElementById('gameForm').submit();
-      }
+      // set current year where needed
+      currentYear();
     </script>
   </body>
 </html>

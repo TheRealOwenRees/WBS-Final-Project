@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const fileupload = require('express-fileupload');
 const stream = require('stream');
+const pgn2tex = require('./public/js/pgn2tex.js')
+const latex = require('node-latex')
+const strStream = require('string-to-stream')
 
 const app = express();
 const port = 5000;
@@ -85,7 +88,7 @@ ${data.moves}`
     )
   }
 
-  // save loaded game as PDF
+  // save loaded game as PGN
   if (req.body.action === 'savepgn') {
     const pgnString = createPgnString(req.body)
 
@@ -98,6 +101,24 @@ ${data.moves}`
 
     readStream.pipe(res);
     readStream.end()
+  }
+
+  // save loaded game as PDF
+  if (req.body.action === 'savepdf') {
+    const pgnString = createPgnString(req.body)
+    const diagrams = JSON.parse(req.body.diagramPly)
+    console.log(diagrams)
+    const texFile = pgn2tex(pgnString, diagrams)
+    // const input = fs.createReadStream('input.tex')
+    const input = strStream(texFile)
+    // const output = fs.createWriteStream('output.pdf')
+    const pdf = latex(input)
+    // const pdf = pdflatex(input)
+
+    // pdf.pipe(output)
+    pdf.pipe(res)
+    pdf.on('error', err => console.error(err))
+    pdf.on('finish', () => console.log('PDF generated!'))
   }
 
   // load game and split PGN
@@ -130,7 +151,7 @@ ${data.moves}`
         locale: 'en',
         timerTime: '',
         layout: 'top',
-        showFen: false,
+        showFen: true,
         coordsInner: true,
         headers: true,
         coordsFactor: '1.0',
@@ -165,7 +186,7 @@ ${data.moves}`
   }
 });
 
-// http error reponse codes
+// http error response codes
 app.use((req, res) => res.status(404).send('404'))
 app.use((req, res) => res.status(500).send('500'))
 
