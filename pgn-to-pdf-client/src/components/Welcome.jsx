@@ -11,7 +11,7 @@ const Welcome = () => {
   return (
     <div className="pseudo-body-centered-container">
       <div className="welcome-grid-container">
-        <div className="logo">
+        <div className="welcome-logo">
           <img
             src={logo}
             alt="logo"
