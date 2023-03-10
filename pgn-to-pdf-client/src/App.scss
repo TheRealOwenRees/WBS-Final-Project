@@ -1,6 +1,54 @@
+@use './sass/layout/normalize';
 @use './sass/helpers/variables';
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: variables.$bg-color;
   color: variables.$accent-color;
+}
+
+.pseudo-body-centered-container {
+  display: grid;
+  grid-template-rows: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.welcome-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  max-width: 960px;
+  text-align: center;
+}
+
+.images-grid-container {
+  display: grid;
+  //grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+}
+
+.logo {
+  margin: 20px 20px;
+}
+
+.btn-get-started {
+  padding: 20px 30px;
+  background-color: transparent;
+  color: variables.$accent-color;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 1px solid variables.$accent-color;
+  &:hover, &:focus {
+    background-color: variables.$accent-color;
+    color: variables.$bg-color;
+    cursor: pointer;
+  }
 }
